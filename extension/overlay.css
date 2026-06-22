@@ -1,0 +1,114 @@
+#vocaltranslator-overlay {
+  position: fixed;
+  top: 10px;
+  right: 0;
+  bottom: 80px;
+  z-index: 2147483647; /* max z-index */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 6px;
+  pointer-events: none;
+  font-family: system-ui, -apple-system, sans-serif;
+  width: 420px;
+  padding: 12px;
+  /* DEBUG: remove these when working */
+  background: rgba(0, 100, 255, 0.25) !important;
+  border: 3px dashed #00aaff !important;
+  border-radius: 4px;
+}
+
+#vocaltranslator-overlay .vt-subtitle {
+  background: rgba(0, 0, 0, 0.78);
+  color: rgba(255, 255, 255, 0.95);
+  /* DEBUG: remove when working */
+  border: 2px solid #ff6600 !important;
+  min-height: 40px;
+  min-width: 100px;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 30px;
+  line-height: 1.45;
+  text-align: left;
+  white-space: pre-line;
+  pointer-events: auto;
+  animation: vt-fade-in 200ms ease-out;
+  transition: opacity 400ms ease-out, transform 300ms ease-out;
+  max-width: 100%;
+  word-wrap: break-word;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+#vocaltranslator-overlay .vt-subtitle.fading {
+  opacity: 0;
+  transform: translateY(-12px);
+}
+
+#vocaltranslator-overlay .vt-subtitle.streaming {
+  font-style: italic;
+  opacity: 0.75;
+}
+
+#vocaltranslator-overlay .vt-subtitle.done {
+  font-weight: 600;
+  opacity: 1.0;
+  transition: font-weight 0.2s ease-out, opacity 0.2s ease-out;
+}
+
+#vocaltranslator-overlay .vt-status {
+  background: rgba(0, 0, 0, 0.55);
+  color: rgba(255, 255, 255, 0.55);
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  pointer-events: auto;
+}
+
+#vocaltranslator-overlay .vt-drag-handle {
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  cursor: grab;
+  pointer-events: auto;
+  opacity: 0;
+  transition: opacity 200ms;
+}
+
+#vocaltranslator-overlay:hover .vt-drag-handle {
+  opacity: 1;
+}
+
+#vocaltranslator-overlay .vt-close {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 22px;
+  height: 22px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 12px;
+  cursor: pointer;
+  pointer-events: auto;
+  opacity: 0;
+  transition: opacity 200ms;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#vocaltranslator-overlay:hover .vt-close {
+  opacity: 1;
+}
+
+@keyframes vt-fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,22 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { width: 280px; font-family: system-ui, sans-serif; background: #1a1a2e; color: #e1e4e8; font-size: 13px; }
+.container { padding: 16px; }
+header { display: flex; align-items: baseline; gap: 8px; margin-bottom: 16px; }
+header h1 { font-size: 18px; font-weight: 700; }
+.version { color: #8b949e; font-size: 11px; }
+.section { margin-bottom: 12px; }
+label { display: block; font-size: 11px; font-weight: 600; color: #8b949e; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+select, input { width: 100%; padding: 6px 10px; background: #16213e; border: 1px solid #30363d; border-radius: 6px; color: #e1e4e8; font-size: 13px; }
+select:focus, input:focus { border-color: #58a6ff; outline: none; }
+.settings input { width: 80px; }
+.server-status { display: flex; align-items: center; gap: 6px; padding: 6px 10px; background: #16213e; border-radius: 6px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.dot.connected { background: #56d364; }
+.dot.disconnected { background: #da3633; }
+.dot.checking { background: #d29922; }
+button { width: 100%; padding: 10px; border: none; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.15s; }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-start { background: #238636; color: #fff; }
+.btn-start:hover:not(:disabled) { background: #2ea043; }
+.btn-stop { background: #da3633; color: #fff; }
+.btn-stop:hover:not(:disabled) { background: #f85149; }
