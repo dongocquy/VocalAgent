@@ -1,12 +1,14 @@
 # VocalAgent — Teams Realtime Translator
 
-Chrome extension for realtime English→Vietnamese meeting translation on Microsoft Teams (web).
+Chrome extension + Python server for realtime English→Vietnamese meeting translation on Microsoft Teams (web).
+
+Hỗ trợ **OpenAI GPT-4o-mini** và **DeepSeek v4-flash**.
 
 ## Architecture
 
 - Chrome Extension captures Teams tab audio via `chrome.tabCapture`
 - Local Python server runs Whisper STT on RTX 5080 GPU
-- DeepSeek v4-flash API handles translation
+- OpenAI GPT-4o-mini / DeepSeek v4-flash API handles translation
 - Subtitles injected as DOM overlay
 
 ## Quick Start
@@ -22,7 +24,7 @@ Chrome extension for realtime English→Vietnamese meeting translation on Micros
 - Python 3.12+
 - NVIDIA GPU with CUDA 12+ (RTX 5080 recommended)
 - Chrome 120+
-- DeepSeek API key
+- OpenAI API key or DeepSeek API key
 
 ## Development
 
@@ -63,10 +65,23 @@ python -m pytest test/ -v
 4. Open Teams meeting → click extension icon → Start
 
 ### Configuration
-- Admin UI: `http://127.0.0.1:8765/admin`
-- Config file: `config.json` (auto-created in project root)
-- Environment variable: `VOCALAGENT_CONFIG` overrides config file path
+
+**Cách 1 — Environment variables (ưu tiên cao nhất):**
+Tạo file `.env` (xem `.env.example`):
+```
+VOCALAGENT_PROVIDER=openai
+VOCALAGENT_OPENAI_API_KEY=...
+# hoặc VOCALAGENT_DEEPSEEK_API_KEY=...
+```
+
+**Cách 2 — Admin UI:**
+`http://127.0.0.1:8765/admin` — chọn provider + nhập key.
+
+**Cách 3 — Config file:**
+`config.json` (auto-created, auto-migrated to SQLite).
 
 ### API Providers
-- DeepSeek: Set API key at `/admin` or in `config.json`
-- OpenAI: Switch provider at `/admin`, set API key
+| Provider | Default Model | Env Var |
+|----------|--------------|---------|
+| OpenAI   | `gpt-4o-mini` | `VOCALAGENT_OPENAI_API_KEY` |
+| DeepSeek | `deepseek-v4-flash` | `VOCALAGENT_DEEPSEEK_API_KEY` |

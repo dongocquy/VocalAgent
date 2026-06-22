@@ -32,7 +32,7 @@ except ImportError:
     pass
 
 DEFAULT_CONFIG: Dict[str, Any] = {
-    "provider": "deepseek",
+    "provider": "openai",
     "deepseek": {
         "api_key": "",
         "model": "deepseek-v4-flash",
